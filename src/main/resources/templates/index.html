@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>C2C二手交易平台</title>
+    <link rel="icon" href="/img/page_icon.png"/>
+    <link th:href="@{/css/home_page/home_page_circle.css}" rel="stylesheet"/>
+    <link th:href="@{/css/home_page/header_and_nav.css}" rel="stylesheet"/>
+    <link th:href="@{/css/home_page/bottom_ifon_and_feature.css}" rel="stylesheet"/>
+    <script th:src="@{/js/jquery-1.3.2.min.js}"></script>
+    <script th:src="@{/js/home/home_page_circle.js}"></script>
+    <script th:src="@{/js/home/header_model_js.js}"></script>
+</head>
+<body>
+<!--整体结构很明确，就是轮播图的位置用了绝对位置感觉很不好，
+然后接下来那些都用了绝对位置，很尴尬-->
+<header th:include="header :: copy"></header>
+<div th:include="short_nav_show :: short_nav_show" class="short_nav_show"></div>
+<nav th:include="my_nav :: my_nav" class="my_nav"></nav>
+<div th:include="personal_nav :: personal_nav" class="personal_nav"></div>
+<div class="my_slider">
+    <div class="my_slide">
+        <h1>华为mate60pro - 遥遥领先</h1>
+        <p>
+            HUAWEI Mate 60 Pro（含一年碎屏保）
+            【机身内存ROM】12GB+1TB
+            【颜色】雅川青
+            【网络制式】全网通
+            【版本类型】中国大陆版
+            【运行情况】正常开机，无自动重启
+            【账号】系统帐号及开屏密码可退出登录
+            【机身成色】机身外观完好，无使用痕迹
+            【屏幕成色】屏幕完好
+            【屏幕显示】屏幕显示正常
+            【维修及进水情况】无维修，无进水
+
+            </p>
+        <div class="slide_img">
+            <img src="/img/home/遥遥领先.png" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide">
+        <h1>Apple MacBook Air 13.3英寸笔记本电脑</h1>
+        <p>
+            22款MacBookAir 13寸 M2芯片 8+256G 星光色。保修到2024.9月底 电池循环仅7次，电池100%，买回来就没怎么用 全套盒子配件都在！嘎嘎新！公司重新配了电脑，故卖掉！喜欢的私信我！
+            一机一况如实描述 图片是正常光线拍摄，没经过任何处理，所见即所得
+            需要充新机，直接滴滴！可置换可回收
+            线上线下同时销售，走量很快，看好请直接下单</p>
+        <div class="slide_img">
+            <img src="/img/home/macbookair.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide">
+        <h1> 捷安特ATX660</h1>
+        <p>
+            捷安特ATX660的M码，3月份在华阳捷安特店里购买的新车，可在店里免费保养，平时仅上下班3公里内使用，工作原因要离开成都，便宜出售，兴隆湖附近可送货上门
+        </p>
+        <div class="slide_img">
+            <img src="/img/home/gaint.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide">
+        <h1>baby-G古早款 </h1>
+        <p>
+            【限时降价】卡西欧baby-G古早款
+            很早之前线下实体店买的，时间久远找不到小票了，功能完好，一直压箱底未使用表带有点泛黄。
+        </p>
+        <div class="slide_img">
+            <img src="/img/home/baby-g.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+    <div class="my_slide current">
+        <h1> 京东京造 K3</h1>
+        <p>
+            京东京造 K3蓝牙双模矮轴机械键盘 84键RGB背光茶轴无线键盘 Mac/iPad键盘 键盘机械 蓝牙键盘
+
+            购物京东自营，盒子都在，无返修功能，一切正常，包装盒子所有东西都在，支持windows MAC ipad的系统,键盘带RGB颜色变换，成色九成新见图，收到货后测试无质量问题不退不换 </p>
+        <div class="slide_img">
+            <img src="/img/home/k3.jpg" style="width: 400px;height: 270px"/>
+        </div>
+    </div>
+<!--    左边的箭头-->
+    <div class="left_border">
+        <span class="left_turn"></span>
+    </div>
+<!--    右边的箭头-->
+    <div class="right_border">
+        <span class="right_turn"></span>
+    </div>
+</div>
+<div class="featured_products">
+
+    <h2>精选的商品</h2>
+
+<!-- 从shopInformationBean中遍历对象 -->
+    <figure class="product" th:each="o:${shopInformationBean}">
+        <div class="product_img_div">
+            <img src="/img/home/feature_prodects/pleaseuploadimg.png" class="show_img" th:src="${o.image}"/>
+        </div>
+        <p class="show_tip" th:text="${o.remark}"></p>
+<!--传值时传入id-->
+        <input class="product_id" type="hidden" th:value="${o.id}"/>
+
+<!--通过id和selectById函数跳转到对应的商品详情页面-->
+        <a class="product_name" th:href="'/selectById.do?id='+${o.id}"   th:text="${o.name}" th:title="${o.name}">wsk1103</a><br/>
+
+        <span class="product_cost" th:text="'￥'+${o.price}+'元'">￥350.00</span><br/><br/>
+        <span class="buy product_1" th:value="${o.id}">加入购物车</span>
+<!--        点击后通过js用ajax传递商品id-->
+    </figure>
+
+</div>
+<div class="home_page_info">
+    <div class="bottom_info">
+        <h2>
+            关于我们
+        </h2>
+        <p>
+            该网站成立于2023年，是帝国理工最大的校内二手交易网站。拥有2000万注册用户和10万注册企业和合作伙伴。日常在线活动用户约90万。交易金额最大可达1亿/日。
+        </p>
+    </div>
+    <div class="bottom_info">
+        <h2>
+            团队信息
+        </h2>
+        <p>该网站由509协力完成。有疑问可以发送问题至邮箱 1589089645@qq.com
+        </p>
+    </div>
+    <div class="bottom_info">
+        <h2>
+            版权声明
+        </h2>
+        <p>本网站社区发布的所有信息，都视为发布者同意本网站免费予以使用；同时本网站认为其发布的信息有侵权、违法等行为的，有权予以修改、删除或通知发布者予以纠正的权利，发布者不得阻止或拒绝。
+        </p>
+    </div>
+</div>
+<footer>
+    <p>Copyright © 2023.   509 All rights reserved.<a href="/"></a></p>
+</footer>
+</body>
+</html>
